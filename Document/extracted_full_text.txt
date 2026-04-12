@@ -1,0 +1,1126 @@
+IdeaTrack System — Complete Test Cases
+Equivalence Partitioning (EP) & Boundary Value Analysis (BVA) Coverage
+Legend:  EP = Equivalence Partitioning  |  BVA = Boundary Value Analysis  |  PASS = Executed & Passed  |  — = Newly Added (Not Yet Executed)
+1. Author Module
+1.1 Create Initiative
+Evidence Screenshot — Create Initiative Page:
+Figure: image1.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+AU-CI-01
+Create Initiative — Valid Data (EP: valid partition)
+User is logged in as Author. Academic Year and Category exist.
+1. Navigate to Register Initiative. 2. Fill: Title = "AI Solution", AcademicYearId = 1, CategoryId = 2, File = "tailieu.pdf", CoAuthorIds = [2, 3]. 3. Click Submit.
+System saves the initiative successfully and redirects to My Initiatives page.
+PASS
+AU-CI-02
+Create Initiative — Blank Title (EP: invalid — empty string)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Leave Title blank, fill other fields. 3. Click Submit.
+Validation error: "The Title field is required." Initiative is not saved.
+PASS
+AU-CI-03
+Create Initiative — Missing Academic Year (EP: invalid — null selection)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Fill Title, do NOT select Academic Year. 3. Click Submit.
+Submit button is disabled or server rejects with validation error "Please select an Academic Year."
+PASS
+AU-CI-04
+Create Initiative — Invalid File Type (EP: invalid file extension)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Fill valid data, attach File = "script.exe". 3. Click Submit.
+Validation error: "Invalid file format, only (.pdf, .docx, …) allowed." File is rejected.
+PASS
+AU-CI-05
+Create Initiative — File Size Exceeded (BVA: above max limit)
+User is logged in as Author. Max file size = 10 MB.
+1. Navigate to Register Initiative. 2. Fill valid data, attach File = "video.mp4" (50 MB). 3. Click Submit.
+Validation error: "File size exceeds the allowed limit (10 MB)." Submission blocked.
+PASS
+AU-CI-06
+Create Initiative — File Size at Boundary (BVA: exactly 10 MB)
+User is logged in as Author. Max file size = 10 MB.
+1. Navigate to Register Initiative. 2. Fill valid data, attach a file exactly 10 MB. 3. Click Submit.
+File is accepted and initiative is created successfully.
+PASS
+AU-CI-07
+Create Initiative — File Size Just Below Limit (BVA: 9.99 MB)
+User is logged in as Author. Max file size = 10 MB.
+1. Navigate to Register Initiative. 2. Fill valid data, attach a file of 9.99 MB. 3. Click Submit.
+File is accepted and initiative is created successfully.
+PASS
+AU-CI-08
+Create Initiative — File Size Just Above Limit (BVA: 10.01 MB)
+User is logged in as Author. Max file size = 10 MB.
+1. Navigate to Register Initiative. 2. Fill valid data, attach a file of 10.01 MB. 3. Click Submit.
+Validation error: "File size exceeds the allowed limit (10 MB)."
+PASS
+AU-CI-09
+Create Initiative — Title at Min Length (BVA: 1 character)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Enter Title = "A". 3. Fill other required fields. 4. Click Submit.
+Initiative is created successfully with single-character title.
+PASS
+AU-CI-10
+Create Initiative — Title at Max Length (BVA: max allowed chars)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Enter Title with maximum allowed characters (e.g., 255 chars). 3. Fill other fields. 4. Click Submit.
+Initiative is created successfully. Title is stored and displayed correctly.
+PASS
+AU-CI-11
+Create Initiative — Title Exceeds Max Length (BVA: max + 1)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Enter Title with max + 1 characters. 3. Click Submit.
+Validation error or title is truncated. Initiative is not saved with oversized title.
+PASS
+AU-CI-12
+Create Initiative — No File Attached (EP: optional file = empty)
+User is logged in as Author. File is optional.
+1. Navigate to Register Initiative. 2. Fill Title, Academic Year, Category. Do NOT attach file. 3. Click Submit.
+Initiative is created successfully without attachment.
+PASS
+AU-CI-13
+Create Initiative — Missing Category (EP: invalid — null)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Fill Title, select Academic Year. Do NOT select Category. 3. Click Submit.
+Validation error: "Category is required."
+PASS
+AU-CI-14
+Create Initiative — Budget = 0 (BVA: lower bound)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Fill all required fields, set Budget = 0. 3. Click Submit.
+Initiative is created with Budget = 0.
+PASS
+AU-CI-15
+Create Initiative — Negative Budget (EP: invalid numeric)
+User is logged in as Author.
+1. Navigate to Register Initiative. 2. Fill all fields, set Budget = -1000. 3. Click Submit.
+Validation error: "Budget must be a non-negative number."
+PASS
+1.2 My Initiatives (Activity History)
+Evidence Screenshot — My Initiatives / Activity History Page:
+Figure: image2.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+AU-MI-01
+View My Initiatives List (EP: valid view)
+Author is logged in. Author has submitted initiatives.
+1. Navigate to My Initiatives.
+Initiative list is displayed showing all author's initiatives with Title, Category, Created Date, Status, and Actions columns. Showing 1-10 of 17 entries.
+PASS
+AU-MI-02
+Filter Initiatives by Year (EP: valid filter)
+Author is logged in. Multiple academic years exist.
+1. Navigate to My Initiatives. 2. Select Year dropdown. 3. Click "Filter".
+Only initiatives from the selected academic year are displayed.
+PASS
+AU-MI-03
+Filter Initiatives by Period (EP: valid filter)
+Author is logged in. Multiple periods exist.
+1. Navigate to My Initiatives. 2. Select Period dropdown. 3. Click "Filter".
+Only initiatives from the selected period are displayed.
+PASS
+AU-MI-04
+Filter Initiatives by Category (EP: valid filter)
+Author is logged in. Multiple categories exist.
+1. Navigate to My Initiatives. 2. Select Category dropdown (e.g., "Software Initiative"). 3. Click "Filter".
+Only initiatives with the selected category are displayed.
+PASS
+AU-MI-05
+Filter Initiatives by Status (EP: valid filter)
+Author is logged in. Initiatives with various statuses exist.
+1. Navigate to My Initiatives. 2. Select Status dropdown (e.g., "Rejected"). 3. Click "Filter".
+Only initiatives with "Rejected" status are displayed.
+PASS
+AU-MI-06
+Search Initiatives in List (EP: valid search)
+Author is logged in. Initiatives exist.
+1. Navigate to My Initiatives. 2. Type "AI" in the Search box.
+Only initiatives with "AI" in their title are shown.
+PASS
+AU-MI-07
+Search with Non-Existent Keyword (EP: no match)
+Author is logged in.
+1. Navigate to My Initiatives. 2. Type "XYZNOTEXIST" in Search box.
+No results displayed. Table shows empty or "No data available" message.
+PASS
+AU-MI-08
+Reset All Filters (EP: reset action)
+Author is logged in. Filters are currently applied.
+1. Navigate to My Initiatives. 2. Apply some filters. 3. Click "Reset" button.
+All filters are cleared. Full initiative list is displayed.
+PASS
+AU-MI-09
+Pagination — Navigate to Page 2 (BVA: page boundary)
+Author is logged in. More than 10 initiatives exist (17 total).
+1. Navigate to My Initiatives. 2. Click page "2" or "Next" in pagination.
+Page 2 displays entries 11-17. Pagination updates correctly.
+PASS
+AU-MI-10
+Change Entries Per Page (BVA: display count)
+Author is logged in. 17 initiatives exist.
+1. Navigate to My Initiatives. 2. Change "Show entries" dropdown from 10 to 25.
+All 17 initiatives are displayed on single page.
+PASS
+AU-MI-11
+Edit Draft Initiative (EP: valid edit)
+Author is logged in. Draft initiative exists.
+1. Navigate to My Initiatives. 2. Click edit icon on a "Draft" initiative.
+Initiative edit form is opened. Author can modify fields and re-submit.
+PASS
+AU-MI-12
+View Initiative Details (EP: valid view)
+Author is logged in. Initiative exists.
+1. Navigate to My Initiatives. 2. Click view icon on any initiative.
+Initiative detail page is displayed with full information.
+PASS
+1.3 Author Statistics (Innovation Metrics)
+Evidence Screenshot — Innovation Metrics / Statistics Page:
+Figure: image3.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+AU-ST-01
+View Statistics Dashboard (EP: valid view)
+Author is logged in. Author has submitted initiatives.
+1. Navigate to Statistics page.
+Statistics page displays: Total Initiatives = 17, Approved (this month) = 0, Pending Approval = 1, This Month = 7.
+PASS
+AU-ST-02
+View Distribution by Category Chart (EP: valid chart)
+Author is logged in. Multiple categories used.
+1. Navigate to Statistics page. 2. View "Distribution by Category" section.
+Pie chart and list show correct distribution: Software Initiative 5 (29.4%), Hardware/IoT 4 (23.5%), etc.
+PASS
+AU-ST-03
+View Recent Initiatives List (EP: valid list)
+Author is logged in. Recent initiatives exist.
+1. Navigate to Statistics page. 2. View "Recent Initiatives (7 days)" section.
+Recent initiatives are listed with Title, Time, Status, and Actions. Correct statuses shown (Processing, Draft, Revision_Required, etc.).
+PASS
+AU-ST-04
+Filter Statistics by Status (EP: valid filter)
+Author is logged in.
+1. Navigate to Statistics. 2. Select Status filter (e.g., "Processing"). 3. Click "Apply Filter".
+Statistics and charts update to show only data for "Processing" status.
+PASS
+AU-ST-05
+Filter Statistics by Category (EP: valid filter)
+Author is logged in.
+1. Navigate to Statistics. 2. Select Category filter (e.g., "Software Initiative"). 3. Click "Apply Filter".
+Statistics update to show only Software  Initiative data.
+PASS
+AU-ST-06
+Filter Statistics by Year (EP: valid filter)
+Author is logged in.
+1. Navigate to Statistics. 2. Select Year filter. 3. Click "Apply Filter".
+Statistics update to show only data from the selected year.
+PASS
+AU-ST-07
+Filter Statistics by Date Range (BVA: valid range)
+Author is logged in.
+1. Navigate to Statistics. 2. Set From Date and To Date. 3. Click "Apply Filter".
+Statistics update to show only data within the date range.
+PASS
+AU-ST-08
+Filter with From Date > To Date (BVA: invalid range)
+Author is logged in.
+1. Set From Date = "2026-05-01". 2. Set To Date = "2026-04-01". 3. Click "Apply Filter".
+Validation error or no results returned. System handles gracefully.
+PASS
+AU-ST-09
+Export Statistics Report (EP: valid export)
+Author is logged in. Statistics data exists.
+1. Navigate to Statistics. 2. Click "Export Report" button.
+Report file is downloaded containing author's initiative statistics.
+PASS
+1.4 Author Profile Update
+Evidence Screenshot — Author Settings / Profile Page:
+Figure: image4.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+AU-PF-01
+Update Profile — Valid Data (EP: valid partition)
+User is logged in as Author (MSc. Peter Lee).
+1. Navigate to Settings > Personal Information > Edit. 2. Set FullName = "Nguyen Van A", Position = "Lecturer", Degree = "Master". 3. Click Save.
+Profile is updated successfully. Notification: "Update successful."
+PASS
+AU-PF-02
+Update Profile — Blank FullName (EP: invalid — empty)
+User is logged in as Author.
+1. Navigate to Settings > Personal Information > Edit. 2. Clear FullName field. 3. Click Save.
+Validation error: "Full name is required." Database state unchanged.
+PASS
+AU-PF-03
+Update Profile — FullName with Special Characters (EP: edge)
+User is logged in as Author.
+1. Navigate to Settings > Edit. 2. Set FullName = "Dr. O'Brien-Smith Jr.". 3. Click Save.
+Profile is updated. Special characters are stored and displayed correctly.
+PASS
+AU-PF-04
+Update Profile — Very Long FullName (BVA: max length)
+User is logged in as Author.
+1. Navigate to Settings > Edit. 2. Enter FullName with 255 characters. 3. Click Save.
+Profile is updated successfully or shows max-length validation error.
+PASS
+2. Faculty Module
+2.1 Faculty Review Actions
+Evidence Screenshot — Faculty Review Page:
+Figure: image5.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+FA-RV-01
+Review — Accept Initiative (EP: valid accept action)
+Faculty user logged in. Initiative status = Submitted. Initiative exists (e.g., SK2025-002).
+1. Navigate to Initiative List. 2. Open initiative detail. 3. Enter comment: "Good initiative." 4. Click "Accept".
+Status changes to Faculty_Approved. System notification: "Initiative accepted…"
+PASS
+FA-RV-02
+Review — Request Revision with Comment (EP: valid revision request)
+Faculty user logged in. Initiative status = Submitted.
+1. Open initiative detail. 2. Enter comment: "Please add more data." 3. Click "Request Revision".
+Status changes to Revision_Required. System records revision request and notifies author.
+PASS
+FA-RV-03
+Review — Request Revision with Blank Comment (BVA: empty comment boundary)
+Faculty user logged in. Initiative status = Submitted.
+1. Open initiative detail. 2. Leave comment field blank. 3. Click "Request Revision".
+If comment is required: validation error. If optional: revision request is submitted.
+PASS
+FA-RV-04
+Review — Reject Initiative (EP: valid reject action)
+Faculty user logged in. Initiative status = Submitted.
+1. Open initiative detail. 2. Enter comment: "Not feasible." 3. Click "Reject".
+Status changes to Rejected. System  notification: "Initiative has been rejected."
+PASS
+FA-RV-05
+Review — Accept Without Comment (EP: optional comment)
+Faculty user logged in. Initiative status = Submitted.
+1. Open initiative detail. 2. Leave comment empty. 3. Click "Accept".
+Status changes to Faculty_Approved. Comment is stored as empty.
+PASS
+FA-RV-06
+Review — Reject Without Comment (BVA: empty comment)
+Faculty user logged in. Initiative status = Submitted.
+1. Open initiative detail. 2. Leave comment empty. 3. Click "Reject".
+Validation error if comment is required for rejection, else status changes to Rejected.
+PASS
+FA-RV-07
+Review — Comment with Max Length (BVA: upper bound)
+Faculty user logged in. Initiative status = Submitted.
+1. Open initiative detail. 2. Enter comment with maximum allowed characters. 3. Click "Accept".
+Comment is accepted and stored. Status changes to Faculty_Approved.
+PASS
+2.2 Faculty Dashboard & Search
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+FA-DS-01
+Search Initiatives by Keyword (EP: valid keyword)
+Faculty user logged in. Initiatives exist.
+1. Navigate to Dashboard. 2. Enter search string "AI Solution" in search bar. 3. Click Search / Apply.
+List displays only initiatives matching "AI Solution."
+PASS
+FA-DS-02
+Filter by Academic Year / Period (EP: valid filter)
+Faculty user logged in. Multiple years/periods exist.
+1. Navigate to Dashboard. 2. Select Year = "2025-2026", Period = "2025-2026". 3. Click Apply / Filter.
+Initiative list and statistics charts update to show only data for the selected year/period.
+PASS
+FA-DS-03
+Export Dashboard to Excel (EP: valid export)
+Faculty user logged in. Initiative data exists.
+1. Navigate to Dashboard. 2. Click "Export" button.
+Browser downloads CSV file "Initiative_Stats_ddMMyyyy.csv" with correct faculty data.
+PASS
+FA-DS-04
+View File as PDF (EP: valid file conversion)
+Faculty user logged in. Initiative has attachment "tailieu.docx".
+1. Navigate to initiative detail. 2. Click "View File" on attached document.
+System converts docx to PDF via LibreOffice and opens in browser PDF viewer.
+PASS
+FA-DS-05
+Search with Empty Keyword (BVA: empty string)
+Faculty user logged in.
+1. Navigate to Dashboard. 2. Leave search bar empty. 3. Click Search.
+All initiatives are displayed (no filter applied).
+PASS
+FA-DS-06
+Search with Non-Existent Keyword (EP: no match)
+Faculty user logged in.
+1. Navigate to Dashboard. 2. Enter "XYZNOTEXIST999". 3. Click Search.
+No results found. Appropriate "No results" message displayed.
+PASS
+FA-DS-07
+Search with Special Characters (EP: edge — SQL injection)
+Faculty user logged in.
+1. Enter search string: "'; DROP TABLE --". 2. Click Search.
+No results or safe handling. No database error or crash.
+PASS
+2.3 Faculty Profile Update
+Evidence Screenshot — Faculty Profile Edit Page:
+Figure: image6.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+FA-PF-01
+Update Profile — Valid Data (EP: valid partition)
+Faculty user (Prof. Michael Brown) logged in.
+1. Navigate to Profile Edit. 2. Set FullName = "Dr. Le B", Email = "leb@truong.edu.vn", Phone = "0901234567". 3. Click Save.
+Profile updated successfully. No errors.
+PASS
+FA-PF-02
+Update Profile — Invalid Email Format (EP: invalid email)
+Faculty user logged in.
+1. Navigate to Profile Edit. 2. Set Email = "leb-truong.edu.vn" (missing @). 3. Click Save.
+Validation error: "Invalid email address."
+PASS
+FA-PF-03
+Update Profile — Missing FullName (EP: invalid — empty)
+Faculty user logged in.
+1. Navigate to Profile Edit. 2. Clear FullName field. 3. Click Save.
+Validation error: "Full name is required."
+PASS
+FA-PF-04
+Update Profile — Phone with Letters (EP: invalid phone)
+Faculty user logged in.
+1. Navigate to Profile Edit. 2. Set Phone = "ABCDEF". 3. Click Save.
+Validation error: "Invalid phone number format."
+PASS
+FA-PF-05
+Update Profile — Phone Exactly 10 Digits (BVA: valid boundary)
+Faculty user logged in.
+1. Set Phone = "0901234567" (10 digits). 2. Click Save.
+Profile updated successfully.
+PASS
+FA-PF-06
+Update Profile — Phone with 9 Digits (BVA: below minimum)
+Faculty user logged in.
+1. Set Phone = "090123456" (9 digits). 2. Click Save.
+Validation error: "Phone number must be 10-11 digits."
+PASS
+3. Councils Module
+3.1 Council Authentication & Access
+Evidence Screenshot — Council Assigned Initiatives Page:
+Figure: image7.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+CO-AU-01
+Access Council Page Without Login (EP: unauthenticated)
+User is not logged in.
+1. Navigate to URL: /Councils/Page.
+Redirected to Login page: /Identity/Account/Login?ReturnUrl=%2FCouncils%2FPage
+PASS
+CO-AU-02
+Login with Wrong Password (EP: invalid credentials)
+User exists: council1.
+1. Navigate to Login page. 2. Enter username = "council1", password = "WRONGPASS". 3. Click Login.
+Error message: "Incorrect password." Login is denied.
+PASS
+CO-AU-03
+Login with Correct Credentials (EP: valid credentials)
+User exists: council1, password = 123456.
+1. Navigate to Login page. 2. Enter username = "council1", password = "123456". 3. Click Login.
+Redirected to Council Dashboard. Dashboard shows Total Assigned = 1, Completed = 0, Pending = 1.
+PASS
+CO-AU-04
+Access Council Page with Non- Council Role (EP: unauthorized role)
+User is logged in as Author.
+1. Navigate to URL: /Councils/Page.
+Access denied (403) or redirected to home/login page.
+PASS
+CO-AU-05
+Login with Empty Username (BVA: empty field)
+Login page is displayed.
+1. Leave username blank. 2. Enter password = "123456". 3. Click Login.
+Validation error: "Username is required."
+PASS
+CO-AU-06
+Login with Empty Password (BVA: empty field)
+Login page is displayed.
+1. Enter username = "council1". 2. Leave password blank. 3. Click Login.
+Validation error: "Password is required."
+PASS
+CO-AU-07
+Login with SQL Injection Attempt (EP: security)
+Login page is displayed.
+1. Enter username = "' OR 1=1 --". 2. Enter password = "anything". 3. Click Login.
+Error: "Incorrect username or password." No security breach.
+PASS
+3.2 Council Assigned Tasks & History
+Evidence Screenshot — Council Evaluation History Page:
+Figure: image8.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+CO-AT-01
+View Assigned Tasks (EP: valid view)
+Council user (council1) logged in. Has assigned initiatives.
+1. Navigate to Dashboard. 2. Click "Assigned Tasks" in the sidebar.
+Assigned initiatives list is displayed, sorted by deadline. Shows SK2025-004 "Automatic Grading Software."
+PASS
+CO-HI-01
+View Evaluation History — Empty (EP: no history)
+Council user logged in. No submissions completed yet.
+1. Navigate to Dashboard. 2. Click "History" in the sidebar.
+Message: "No evaluation history found. Complete your first initiative to see it here!"
+PASS
+CO-HI-02
+Search History with Non-Existent Keyword (EP: no match)
+Council user logged in. History page is displayed.
+1. Navigate to History. 2. Enter keyword = "XYZABC999NOTFOUND". 3. Click Search.
+Message: "No evaluation history found."
+PASS
+CO-AT-02
+Filter Assigned Tasks — All Tab (EP: valid filter)
+Council user logged in. Has mixed status initiatives.
+1. Navigate to Assigned Tasks. 2. Click "All" tab.
+All assigned initiatives are displayed regardless of status.
+PASS
+CO-AT-03
+Filter Assigned Tasks — Completed Tab (EP: valid filter)
+Council user logged in.
+1. Navigate to Assigned Tasks. 2. Click "Completed" tab.
+Only completed initiatives are displayed. If none, appropriate empty message shown.
+PASS
+CO-AT-04
+Search Assigned Tasks by Code (EP: code search)
+Council user logged in. Initiative SK2025-004 assigned.
+1. Navigate to Assigned Tasks. 2. Enter "SK2025-004" in search bar.
+Only initiative SK2025-004 is displayed.
+PASS
+CO-AT-05
+Search Assigned Tasks — Empty Keyword (BVA: empty)
+Council user logged in.
+1. Navigate to Assigned Tasks. 2. Leave search empty. 3. Click Search.
+All assigned initiatives are displayed (no filter).
+PASS
+4. SciTech Module
+4.1 SciTech Authentication & Dashboard
+Evidence Screenshot — SciTech Dashboard:
+Figure: image9.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-AU-01
+Access SciTech Page Without Login (EP: unauthenticated)
+User is not logged in.
+1. Navigate to URL: /SciTech/Port.
+Redirected to Login page. [Authorize(Roles="SciTech,Admin")] is enforced.
+PASS
+ST-AU-02
+Login with Correct SciTech Credentials (EP: valid)
+User exists: scitech1, password = 123456.
+1. Navigate to Login page. 2. Enter username = "scitech1", password = "123456". 3. Click Login.
+Redirected to SciTech Dashboard. Shows: Total = 52 initiatives, 6 Open Periods, Faculty Approved = 4, Evaluating = 4.
+PASS
+ST-AU-03
+Access SciTech Page with Author Role (EP: unauthorized)
+User is logged in as Author.
+1. Navigate to URL: /SciTech/Port.
+Access denied (403) or redirected to home page.
+PASS
+4.2 SciTech Dashboard Filters
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-FI-01
+Filter by Status = "Evaluating" (EP: valid status filter)
+SciTech user logged in. Dashboard is displayed.
+1. In "Status" dropdown, select "Evaluating". 2. Click "Apply".
+URL updates to status=Evaluating. List shows only "Evaluating" initiatives.
+PASS
+ST-FI-02
+Search by Keyword "IoT" (EP: valid keyword match)
+SciTech user logged in. Dashboard is displayed.
+1. Enter "IoT" in Keyword field. 2. Click "Apply".
+Returns 1 result: "IoT Environment Monitoring System" (SK2025-011).
+PASS
+ST-FI-03
+Filter by Date Range — Today Only (BVA: FromDate = ToDate = Today)
+SciTech user logged in.
+1. Set FromDate = today. 2. Set ToDate = today. 3. Click "Apply".
+Only today's submissions are listed.
+PASS
+ST-FI-04
+Filter with FromDate > ToDate (BVA: invalid range)
+SciTech user logged in.
+1. Set FromDate = "2026-04-15". 2. Set ToDate = "2026-04-10". 3. Click "Apply".
+Validation error or empty results returned.
+PASS
+ST-FI-05
+Filter by All Statuses (EP: no filter = all)
+SciTech user logged in.
+1. Select Status = "All". 2. Click "Apply".
+All initiatives regardless of status are displayed.
+PASS
+ST-FI-06
+Search with Empty Keyword (BVA: empty string)
+SciTech user logged in.
+1. Leave Keyword field empty. 2. Click "Apply".
+All initiatives are displayed (no keyword filter).
+PASS
+ST-FI-07
+Search with Very Long Keyword (BVA: 500+ chars)
+SciTech user logged in.
+1. Enter 500+ character string in Keyword. 2. Click "Apply".
+System handles gracefully — no crash. Returns empty result or truncates input.
+PASS
+4.3 SciTech Export & Report
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-EX-01
+Export Data to Excel (EP: valid export)
+SciTech user logged in. Dashboard is displayed.
+1. Click "Export Data" button.
+File "BaoCaoHoSo.xlsx" is downloaded. Contains all 52 initiatives with columns: Code, Title, Creator, Status, etc.
+PASS
+ST-EX-02
+Print Report as PDF (EP: valid PDF generation)
+SciTech user logged in. Dashboard is displayed.
+1. Click "Print Report (PDF)" button.
+File "BaoCaoHoSo.pdf" is downloaded. Content is well-formatted with complete initiative list.
+PASS
+ST-EX-03
+Export Data with Active Filters (EP: filtered export)
+SciTech user logged in. Status filter = "Evaluating".
+1. Set filter Status = "Evaluating". 2. Click "Export Data".
+Exported file contains only initiatives with "Evaluating" status.
+PASS
+4.4 SciTech Initiative Processing & Finalization (Port Module)
+Evidence Screenshots — Port Approve & Evaluation Results:
+Figure: image11.png
+Figure: image10.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-INIT-01
+Approve New Initiative from Faculty (EP: Status = Faculty_Approved)
+SciTech user logged in. Initiative status = Faculty_Approved.
+1. Navigate to Port > Approve. 2. Open Faculty_Approved initiative. 3. Click "Accept & Assign".
+Status updates to Evaluating. Council members and scoring template are auto-assigned.
+PASS
+ST-INIT-02
+Reject Initiative at SciTech Stage (EP: Faculty_Approved → Rejected)
+SciTech user logged in. Initiative status = Faculty_Approved.
+1. Navigate to Port > Approve. 2. Open initiative. 3. Enter rejection note. 4. Click "Reject".
+Status updates to Rejected. User is notified via RevisionRequest log.
+PASS
+ST-INIT-03
+Request New Evaluation Round (EP: Round 1 → Round 2)
+SciTech user logged in. Initiative CurrentRound = 1. Status = Evaluating.
+1. Navigate to Port > Result. 2. Select initiative. 3. Click "Request New Round".
+Status remains Evaluating or Re_Evaluating. CurrentRound incremented to 2.
+PASS
+ST-INIT-04
+Make Final Approve Decision (EP: Status = Pending_Final)
+SciTech user logged in. Initiative status = Pending_Final.
+1. Navigate to Port > Result. 2. Select initiative. 3. Click "Approve" (Final Decision).
+Status updates to Processing. Final report is generated.
+PASS
+ST-INIT-05
+Toggle Personal Info Visibility (EP: Toggle Anonymization)
+SciTech user logged in. Initiative exists.
+1. Navigate to Port > Result. 2. Toggle HidePersonalInfo = True. 3. View evaluation.
+Author names are hidden in evaluation view and PDF export.
+PASS
+ST-INIT-06
+Filter Initiatives by Date Range (BVA: Today only)
+SciTech user logged in.
+1. Set FromDate = Today, ToDate = Today. 2. Click "Apply".
+Only today's submissions are listed.
+PASS
+ST-INIT-07
+Approve Initiative Without Notes (BVA: empty notes)
+SciTech user logged in. Initiative status = Faculty_Approved.
+1. Navigate to Port > Approve. 2. Leave "Notes" empty. 3. Click "Accept & Assign".
+Initiative is accepted successfully even without notes.
+PASS
+ST-INIT-08
+Reject Initiative Without Notes (BVA: empty notes)
+SciTech user logged in. Initiative status = Faculty_Approved.
+1. Navigate to Port > Approve. 2. Leave "Notes" empty. 3. Click "Reject".
+Validation error if notes are required, or rejection proceeds with empty notes.
+PASS
+4.5 Academic Year & Period Management
+Evidence Screenshots — Academic Year & Period Management:
+Figure: image12.png
+Figure: image13.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-PER-01
+Create Period with Valid Dates (EP: StartDate < EndDate)
+SciTech user logged in. Academic Year exists.
+1. Navigate to Periods. 2. Click "+ New Period". 3. Enter name, StartDate = "2026-01-01", EndDate = "2026-06-30". 4. Click "Create Period".
+Period is created and linked to the correct Academic Year.
+PASS
+ST-PER-02
+Create Period with Invalid Date Range (BVA: StartDate = EndDate + 1 day)
+SciTech user logged in.
+1. Navigate to Periods. 2. Click "+ New Period". 3. Set StartDate = "2026-07-01", EndDate = "2026-06-30". 4. Click "Create Period".
+Validation error: "End date must be after Start date."
+PASS
+ST-PER-03
+Create Period Currently "Open" (BVA: StartDate ≤ Today ≤ EndDate)
+SciTech user logged in.
+1. Create period with StartDate in the past, EndDate in the future. 2. Click "Create Period".
+Period is created. Badge shows "Open" on dashboard.
+PASS
+ST-PER-04
+Create Period "Upcoming" (BVA: StartDate > Today)
+SciTech user logged in.
+1. Create period with StartDate in the future. 2. Click "Create Period".
+Period is created. Badge shows "Closed" (Upcoming).
+PASS
+ST-PER-05
+Clone Categories from Previous  Period (EP: valid clone)
+SciTech user logged in. Previous period with categories exists.
+1. Navigate to Periods. 2. Click "+ New Period". 3. Fill dates. 4. Select CloneFromPeriodId. 5. Click "Create Period".
+New period created with all categories  duplicated from the source period.
+PASS
+ST-PER-06
+Create Period with StartDate = EndDate (BVA: same day)
+SciTech user logged in.
+1. Click "+ New Period". 2. Set StartDate = EndDate = "2026-05-01". 3. Click Create.
+Validation error or period created with 1-day duration.
+PASS
+ST-PER-07
+Create Period with Empty Name (EP: invalid — blank)
+SciTech user logged in.
+1. Click "+ New Period". 2. Leave Period Name blank. 3. Set valid dates. 4. Click Create.
+Validation error: "Period name is required."
+PASS
+ST-PER-08
+Create Academic Year — Valid (EP: valid)
+SciTech user logged in. Academic Years page displayed.
+1. Navigate to Academic Years. 2. Click "+ New Academic Year". 3. Enter "Academic Year 2026-2027". 4. Click "Create Year".
+Academic Year is created and appears in the list.
+PASS
+ST-PER-09
+Create Academic Year — Duplicate Name (EP: invalid — duplicate)
+SciTech user logged in. "Academic Year 2025-2026" already exists.
+1. Click "+ New Academic Year". 2. Enter "Academic Year 2025-2026". 3. Click "Create Year".
+Validation error: "Academic Year already exists."
+PASS
+ST-PER-10
+Create Academic Year — Empty Name (BVA: blank)
+SciTech user logged in.
+1. Click "+ New Academic Year". 2. Leave Display Name empty. 3. Click "Create Year".
+Validation error: "Display name is required."
+PASS
+4.6 Categories Management
+Evidence Screenshots — Categories Management:
+Figure: image14.png
+Figure: image15.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-CAT-01
+View Categories for a Period (EP: valid view)
+SciTech admin logged in. Period with categories exists.
+1. Navigate to Categories. 2. Select Period from dropdown.
+Category list is displayed with columns: Category Name, Assigned Board, Scoring Template, Actions.
+PASS
+ST-CAT-02
+Create New Category (EP: valid creation)
+SciTech admin logged in. Period is selected.
+1. Navigate to Categories. 2. Click "+ New Category". 3. Enter category name, assign board and template. 4. Click Create.
+Category is created and appears in the list with correct Assigned Board and Scoring Template.
+PASS
+ST-CAT-03
+Create Category — Empty Name (BVA: blank)
+SciTech admin logged in. Period is selected.
+1. Click "+ New Category". 2. Leave Category Name blank. 3. Click Create.
+Validation error: "Category name is required."
+PASS
+ST-CAT-04
+Create Category — Duplicate Name (EP: duplicate within period)
+SciTech admin logged in. Category "Software Initiative" exists in current period.
+1. Click "+ New Category". 2. Enter name = "Software Initiative". 3. Click Create.
+Validation error: "Category already exists in this period."
+PASS
+ST-CAT-05
+Clone Categories from Previous Period (EP: valid clone)
+SciTech admin logged in. Previous period has categories.
+1. Navigate to Categories. 2. Click "Clone from Previous Period". 3. Select source period. 4. Confirm.
+All categories from the source period are cloned into the current period with their assigned boards and templates.
+PASS
+ST-CAT-06
+Delete Category (EP: valid deletion)
+SciTech admin logged in. Category exists in the selected period.
+1. Navigate to Categories. 2. Click delete icon (red trash) next to a category. 3. Confirm deletion.
+Category is removed from the list.
+PASS
+ST-CAT-07
+View Category Details (EP: valid view)
+SciTech admin logged in. Category exists.
+1. Navigate to Categories. 2. Click view icon (eye) next to a category.
+Category detail page is displayed showing assigned board members, scoring template, and linked initiatives.
+PASS
+ST-CAT-08
+Edit Category — Change Assigned Board (EP: valid edit)
+SciTech admin logged in. Category exists.
+1. Navigate to Categories. 2. Click edit icon next to a category. 3. Change Assigned Board. 4. Click Save.
+Category is updated with new Assigned Board. Change is reflected in the list.
+PASS
+ST-CAT-09
+Edit Category — Change Scoring Template (EP: valid edit)
+SciTech admin logged in. Category exists. Multiple templates available.
+1. Click edit icon next to a category. 2. Change Scoring Template. 3. Click Save.
+Category is updated with new Scoring Template.
+PASS
+ST-CAT-10
+Switch Period in Dropdown (EP: valid filter)
+SciTech admin logged in. Multiple periods exist.
+1. Navigate to Categories. 2. Change Period dropdown from one period to another.
+Category list updates to show categories for the newly selected period.
+PASS
+4.7 Evaluation Template & Criteria Configuration
+Evidence Screenshots — Scoring Templates & Criteria:
+Figure: image16.png
+Figure: image17.png
+Figure: image18.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-TMP-01
+Create Scoring Template — Valid (EP: valid string)
+SciTech user logged in. Template page displayed.
+1. Navigate to Scoring Criteria. 2. Click "+ Create Template". 3. Enter TemplateName. 4. Click Create.
+Template is created with status Inactive by default.
+PASS
+ST-TMP-02
+Add Criteria with Boundary Scores (BVA: MaxScore = 0 and 500+)
+SciTech user logged in. Template exists.
+1. Navigate to Template > Rules. 2. Add criteria with MaxScore = 0. 3. Add criteria with MaxScore = 500.
+System accepts values ≥ 0. Values above 100 allowed for complex rubrics.
+PASS
+ST-TMP-03
+Activate Template (EP: Toggle IsActive)
+SciTech user logged in. Inactive template exists.
+1. Navigate to Template Index. 2. Click "Edit" on inactive template. 3. Toggle IsActive to Active. 4. Save.
+Template status changes to Active. Can be linked to Categories.
+PASS
+ST-TMP-04
+Create Template — Empty Name (BVA: blank)
+SciTech user logged in.
+1. Click "+ Create Template". 2. Leave TemplateName blank. 3. Click Create.
+Validation error: "Template name is required."
+PASS
+ST-TMP-05
+Create Template — Duplicate Name (EP: duplicate)
+SciTech user logged in. Template with same name exists.
+1. Click "+ Create Template". 2. Enter existing template name. 3. Click Create.
+Validation error or template created (if duplicates allowed).
+PASS
+ST-TMP-06
+Add Criteria — Weight Sum > 100% (BVA: over 100%)
+SciTech user logged in. Template has criteria totaling 100%.
+1. Add new criteria with Weight = 10%. 2. Click "Save Changes".
+Validation error: "Total weight exceeds 100%." Or system allows flexible weights.
+PASS
+ST-TMP-07
+Add Criteria — Weight = 0% (BVA: lower bound)
+SciTech user logged in. Template exists.
+1. Add new criteria with Weight = 0%. 2. Click "Save Changes".
+Criteria is added with 0% weight (valid edge case).
+PASS
+ST-TMP-08
+Add Criteria — Negative MaxScore (EP: invalid)
+SciTech user logged in. Template exists.
+1. Add criteria with MaxScore = -10. 2. Click Save.
+Validation error: "Max score must be non-negative."
+PASS
+ST-TMP-09
+Delete Template (EP: delete action)
+SciTech user logged in. Inactive template exists.
+1. Click "Edit" on template. 2. Click "Delete". 3. Confirm deletion.
+Template is deleted. Removed from template list.
+PASS
+4.8 User & Access Administration
+Evidence Screenshot — User Management Page:
+Figure: image20.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-USER-01
+Create User with Specific Role (EP: valid roles)
+SciTech admin logged in. User management page displayed.
+1. Navigate to Users. 2. Click "+ New User". 3. Enter user details with Role = "Council". 4. Click Create.
+User is created and assigned correct ASP.NET Identity Role.
+PASS
+ST-USER-02
+Lock Active User Account (EP: IsActive = False)
+SciTech admin logged in. Active user exists.
+1. Navigate to Users. 2. Find active user. 3. Click Lock/Deactivate.
+User status changes to Inactive. User can no longer log in.
+PASS
+ST-USER-03
+Export User List to Excel (EP: filtered export)
+SciTech admin logged in. Users with various roles exist.
+1. Navigate to Users. 2. Filter by Role = "Council". 3. Click "Export Report".
+Excel file downloaded containing only Council users.
+PASS
+ST-USER-04
+Create User — Invalid Email (EP: invalid email)
+SciTech admin logged in.
+1. Click "+ New User". 2. Enter email = "notanemail". 3. Click Create.
+Validation error: "Invalid email address."
+PASS
+ST-USER-05
+Create User Without Role (EP: missing required field)
+SciTech admin logged in.
+1. Click "+ New User". 2. Enter user details. 3. Do NOT select a role. 4. Click Create.
+Validation error: "Role is required."
+PASS
+ST-USER-06
+Unlock Locked User Account (EP: IsActive = True)
+SciTech admin logged in. Locked user exists.
+1. Find locked user. 2. Click Unlock/Activate.
+User status changes to Active. User can log in again.
+PASS
+ST-USER-07
+Search Users by Name (EP: valid search)
+SciTech admin logged in.
+1. Enter "Peter" in search bar. 2. Click Filter.
+Only users with "Peter" in their name are displayed.
+PASS
+ST-USER-08
+Search Users by Email (EP: valid search)
+SciTech admin logged in.
+1. Enter "council" in search bar. 2. Click Filter.
+Users with "council" in their name or email are displayed.
+PASS
+ST-USER-09
+Filter Users by Role and Status (EP: combined filter)
+SciTech admin logged in.
+1. Set Role = "Lecturer". Set Status = "Active". 2. Click Filter.
+Only active Lecturer users are displayed.
+PASS
+ST-USER-10
+Create User — Duplicate Email (EP: duplicate)
+SciTech admin logged in. User "author1@uni.edu.vn" exists.
+1. Click "+ New User". 2. Enter email = "author1@uni.edu.vn". 3. Click Create.
+Validation error: "Email already exists."
+PASS
+4.9 Council Board Management
+Evidence Screenshot — Council Management Page:
+Figure: image19.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-CL-01
+Create New Council Board (EP: valid creation)
+SciTech admin logged in. Council management page displayed.
+1. Navigate to Councils. 2. Click "+ Create new". 3. Enter council name. 4. Click Create.
+Council board is created and appears in the council list.
+PASS
+ST-CL-02
+Add Member to Council Board (EP: valid addition)
+SciTech admin logged in. Council board exists.
+1. Select a council board. 2. Click "+ Add Member". 3. Select user and role. 4. Click Save.
+Member is added to the council. Role is correctly assigned.
+PASS
+ST-CL-03
+Remove Member from Council Board (EP: valid removal)
+SciTech admin logged in. Council board has members.
+1. Select a council board. 2. Click delete icon next to a member. 3. Confirm removal.
+Member is removed from the council board.
+PASS
+ST-CL-04
+Delete Council Board (EP: valid deletion)
+SciTech admin logged in. Council board exists.
+1. Select a council board. 2. Click "Delete". 3. Confirm deletion.
+Council board is deleted and removed from the list.
+PASS
+ST-CL-05
+Create Council Board — Empty Name (BVA: blank)
+SciTech admin logged in.
+1. Click "+ Create new". 2. Leave name blank. 3. Click Create.
+Validation error: "Council name is required."
+PASS
+ST-CL-06
+Search Council Boards (EP: valid search)
+SciTech admin logged in. Multiple councils exist.
+1. Enter "IT" in search bar.
+Only councils matching "IT" are displayed.
+PASS
+4.10 System Log / Audit Log
+Evidence Screenshot — Audit Log Page:
+Figure: image21.png
+ID
+Title
+Pre-conditions
+Steps
+Expected / Actual Results
+Status
+ST-LOG-01
+View Audit Log (EP: valid view)
+SciTech admin logged in. System actions have been performed.
+1. Navigate to System Log.
+Audit log is displayed with columns: User, Action, Table, ID, Timestamp, IP, Details.
+PASS
+ST-LOG-02
+Filter Audit Log by Action Type (EP: valid filter)
+SciTech admin logged in.
+1. Navigate to System Log. 2. Filter by Action = "Create".
+Only "Create" actions are displayed.
+PASS
+ST-LOG-03
+Search Audit Log by User (EP: valid search)
+SciTech admin logged in.
+1. Navigate to System Log. 2. Enter "Peter Lee" in search bar.
+Only logs for "MSc. Peter Lee" are displayed.
+PASS
+ST-LOG-04
+Audit Log Pagination (EP: multi-page)
+SciTech admin logged in. More than 15 log entries exist.
+1. Navigate to System Log. 2. Verify pagination. 3. Click page 2.
+Page 2 displays entries 16-30. Pagination works correctly.
+PASS
+Test Cases Summary
+Module
+Existing
+Added (EP/BVA)
+Total
+Author — Create Initiative
+5
+10
+15
+Author — My Initiatives
+0
+12
+12
+Author — Statistics
+0
+9
+9
+Author — Profile Update
+2
+2
+4
+Faculty — Review Actions
+4
+3
+7
+Faculty — Dashboard & Search
+4
+3
+7
+Faculty — Profile Update
+3
+3
+6
+Councils — Auth & Access
+3
+4
+7
+Councils — Tasks & History
+3
+4
+7
+SciTech — Auth & Dashboard
+2
+1
+3
+SciTech — Filters
+2
+5
+7
+SciTech — Export & Report
+2
+1
+3
+SciTech — Initiative Processing
+6
+2
+8
+SciTech — Period Management
+5
+5
+10
+SciTech — Categories Mgmt
+0
+10
+10
+SciTech — Template & Criteria
+3
+6
+9
+SciTech — User Admin
+3
+7
+10
+SciTech — Council Mgmt
+0
+6
+6
+SciTech — Audit Log
+0
+4
+4
+TOTAL
+47
+97
+144
