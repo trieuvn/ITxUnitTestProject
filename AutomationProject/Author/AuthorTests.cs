@@ -85,7 +85,9 @@ namespace AutomationProject.Author
 
                 // Verify redirection to History/Index
                 _wait.Until(d => d.Url.Contains("/Author/Initiative/History") || d.Url.Contains("/Author/Dashboard"));
-            } catch {}
+            } catch {
+                Assert.Fail();
+            }
             Assert.True(true, "Showcase completed");
         }
 
@@ -115,7 +117,7 @@ namespace AutomationProject.Author
 
                 // Verify validation error
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[data-valmsg-for='Initiative.Title']")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -134,7 +136,7 @@ namespace AutomationProject.Author
 
                 // Verify category select is still blocked or shows error
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[data-valmsg-for='Initiative.CategoryId']")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -153,7 +155,7 @@ namespace AutomationProject.Author
 
                 // In our JS code, it shows an alert message for invalid types
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("fileMessage")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -164,7 +166,7 @@ namespace AutomationProject.Author
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
                 // Simulation of large file attachment
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -174,7 +176,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -184,7 +186,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -194,7 +196,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -204,7 +206,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -214,7 +216,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -224,7 +226,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -252,7 +254,7 @@ namespace AutomationProject.Author
                 saveBtn.Click();
 
                 _wait.Until(d => d.Url.Contains("/Author/Initiative/History") || d.Url.Contains("/Author/Dashboard"));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -262,7 +264,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -272,7 +274,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -282,7 +284,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 NavigateToCreateInitiative();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -294,7 +296,7 @@ namespace AutomationProject.Author
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
 
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("basic-datatables")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -315,7 +317,7 @@ namespace AutomationProject.Author
 
                     _wait.Until(d => d.Url.Contains("yearId="));
                 }
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -325,7 +327,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -335,7 +337,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -345,7 +347,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -356,7 +358,7 @@ namespace AutomationProject.Author
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
                 // Search simulation
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -366,7 +368,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -376,7 +378,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -386,7 +388,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -396,7 +398,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -406,7 +408,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/Initiative/History");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -418,7 +420,7 @@ namespace AutomationProject.Author
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
 
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("card")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -428,7 +430,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -438,7 +440,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -458,7 +460,7 @@ namespace AutomationProject.Author
 
                     _wait.Until(d => d.Url.Contains("status="));
                 }
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -468,7 +470,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -478,7 +480,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -488,7 +490,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -499,7 +501,7 @@ namespace AutomationProject.Author
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/DailyReport");
                 Driver.FindElement(By.CssSelector("button.btn-success")).Click();
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -522,7 +524,7 @@ namespace AutomationProject.Author
                 saveBtn.Click();
 
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("successToast")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -544,7 +546,7 @@ namespace AutomationProject.Author
                 saveBtn.Click();
 
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("errorToast")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -554,7 +556,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/Setting");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -564,7 +566,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/Setting");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -574,7 +576,7 @@ namespace AutomationProject.Author
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Author/HomePage/Setting");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
     }

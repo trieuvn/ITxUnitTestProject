@@ -91,7 +91,7 @@ namespace AutomationProject.Faculty
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Faculty/Dashboard");
 
                 _wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("card")));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -131,7 +131,7 @@ namespace AutomationProject.Faculty
                 approveBtn.Click();
 
                 _wait.Until(d => d.Url.Contains("/Faculty/Dashboard"));
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -140,7 +140,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -149,7 +149,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -158,7 +158,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -167,7 +167,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -176,7 +176,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -186,7 +186,7 @@ namespace AutomationProject.Faculty
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Faculty/Dashboard");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -196,7 +196,7 @@ namespace AutomationProject.Faculty
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Faculty/Dashboard");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -206,7 +206,7 @@ namespace AutomationProject.Faculty
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Faculty/Dashboard");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -215,7 +215,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -224,7 +224,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -233,7 +233,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -242,7 +242,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -251,7 +251,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -260,7 +260,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -269,7 +269,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -278,7 +278,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -287,7 +287,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -296,7 +296,7 @@ namespace AutomationProject.Faculty
         {
             try {
                 Login(TestConstants.TestAccounts.FacultyLeader, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
     }

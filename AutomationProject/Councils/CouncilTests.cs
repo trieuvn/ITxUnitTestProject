@@ -22,7 +22,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Councils/Page/Index");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -31,7 +31,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login("council1", "WRONGPASS");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -40,7 +40,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -50,7 +50,7 @@ namespace AutomationProject.Councils
             try {
                 Login(TestConstants.TestAccounts.Author, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Councils/Page/Index");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -59,7 +59,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login("", "123456");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -68,7 +68,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login("council1", "");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -77,7 +77,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login("' OR 1=1 --", "anything");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -87,7 +87,7 @@ namespace AutomationProject.Councils
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
                 Driver.Navigate().GoToUrl($"{BaseUrl}/Councils/Page/AssignedInitiatives");
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -96,7 +96,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -105,7 +105,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -114,7 +114,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -123,7 +123,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -132,7 +132,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -141,7 +141,7 @@ namespace AutomationProject.Councils
         {
             try {
                 Login(TestConstants.TestAccounts.Council, TestConstants.DefaultPassword);
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
 
@@ -185,7 +185,7 @@ namespace AutomationProject.Councils
 
                     _wait.Until(d => d.Url.Contains("/Councils/Page/AssignedInitiatives"));
                 }
-            } catch {}
+            } catch { Assert.Fail(); }
             Assert.True(true, "Showcase completed");
         }
     }
